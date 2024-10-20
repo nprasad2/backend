@@ -9,7 +9,7 @@ pipeline {
         stage ('env_variable'){
            steps {
               def packjson_version = readJSON file : 'package.json'
-                env.VERSION = packjson_version.version
+                VERSION = packjson_version.version
             }
          }
         stage('init') {
