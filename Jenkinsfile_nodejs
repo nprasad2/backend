@@ -13,6 +13,9 @@ pipeline {
                 sh """
                 export PATH=$PATH:/usr/local/bin
                 npm --version
+                npm install
+                ls -ltr
+                
                 """
             }
         }
