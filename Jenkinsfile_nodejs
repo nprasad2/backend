@@ -1,11 +1,17 @@
 pipeline {
     agent any
    environment {
-         def packjson_version = readJSON file : 'package.json'
-        def version = packjson_version.version
+     VERSION = ''
+         
      }
 
     stages {
+        stage ('env_variable'){
+           steps {
+              def packjson_version = readJSON file : 'package.json'
+                env.VERSION = packjson_version.version
+            }
+         }
         stage('init') {
             steps {
                 sh 'ls -ltr'
@@ -20,7 +26,7 @@ pipeline {
                 npm install
                 npm install nodejs
                 ls -ltr
-                echo $version
+                echo $VERSION
                 
                 """
             }
