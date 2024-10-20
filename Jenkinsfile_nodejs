@@ -11,6 +11,7 @@ pipeline {
         stage('build') {
             steps {
                 sh """
+                export PATH=$PATH:/usr/local/bin
                 npm --version
                 """
             }
