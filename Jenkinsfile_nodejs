@@ -2,7 +2,7 @@ pipeline {
     agent any
    environment {
          def packjson_version = readJSON file : 'package.json'
-        def version = ackjson_version.version
+        def version = packjson_version.version
      }
 
     stages {
