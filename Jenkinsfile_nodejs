@@ -30,7 +30,7 @@ pipeline {
                 npm --version
                 npm install
                 ls -ltr
-                echo "Version from package.json: ${env.VERSION}"
+                echo "Version from package.json: ${VERSION}"
                 """
             }
         }
