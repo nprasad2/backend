@@ -1,17 +1,22 @@
 pipeline {
     agent any
-   environment {
-     VERSION = ''
-         
-     }
+
+    environment {
+        VERSION = ''  // Declare an empty environment variable
+    }
 
     stages {
-        stage ('env_variable'){
-           steps {
-              def packjson_version = readJSON file : 'package.json'
-                VERSION = packjson_version.version
+        stage('env_variable') {
+            steps {
+                script {
+                    // Read the version from package.json
+                    def packjson_version = readJSON file: 'package.json'
+                    // Set the environment variable dynamically
+                    env.VERSION = packjson_version.version
+                }
             }
-         }
+        }
+
         stage('init') {
             steps {
                 sh 'ls -ltr'
@@ -21,13 +26,12 @@ pipeline {
         stage('build') {
             steps {
                 sh """
-                export PATH=$PATH:/usr/local/bin
+                export PATH=\$PATH:/usr/local/bin
                 npm --version
                 npm install
                 npm install nodejs
                 ls -ltr
-                echo $VERSION
-                
+                echo "Version from package.json: $VERSION"
                 """
             }
         }
@@ -39,7 +43,7 @@ pipeline {
         }
 
         success {
-            echo 'I will run when pipeline is successful'
+            echo 'I will run when the pipeline is successful'
         }
 
         failure {
