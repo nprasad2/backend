@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        VERSION = ''  // Declare an empty environment variable
+       def VERSION = ''  // Declare an empty environment variable
     }
 
     stages {
@@ -12,7 +12,7 @@ pipeline {
                     // Read the version from package.json
                     def packjson_version = readJSON file: 'package.json'
                     // Set the environment variable dynamically
-                    env.VERSION = packjson_version.version
+                      VERSION = packjson_version.version
                 }
             }
         }
