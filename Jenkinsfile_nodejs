@@ -29,9 +29,8 @@ pipeline {
                 export PATH=\$PATH:/usr/local/bin
                 npm --version
                 npm install
-                npm install nodejs
                 ls -ltr
-                echo "Version from package.json: $VERSION"
+                echo "Version from package.json: ${env.VERSION}"
                 """
             }
         }
