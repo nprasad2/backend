@@ -1,30 +1,33 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('init'){
-            steps{
+
+    stages {
+        stage('init') {
+            steps {
                 sh 'ls -ltr'
             }
-            
         }
-        stage('build'){
-            steps{
+
+        stage('build') {
+            steps {
                 sh """
                 npm install
+                """
             }
-
         }
     }
-      post {
-        always{
-            echo"I will always say Hello again"
-        }
-        success {
-        echo 'I will run when pipeline is success'
-        }
-        failure {
-            echo "i will run this pipline is failuure"
+
+    post {
+        always {
+            echo "I will always say Hello again"
         }
 
+        success {
+            echo 'I will run when pipeline is successful'
+        }
+
+        failure {
+            echo "I will run when the pipeline fails"
+        }
     }
 }
