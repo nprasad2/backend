@@ -34,10 +34,14 @@ pipeline {
                 """
             }
         }
-          stage('build') {
-            steps {
-                sh """
-                 zip -r backend-${VERSION}.zip */ -x Jenkin* - x backend-${VERSION}.zip
+         stage('build') {
+          steps {
+              sh """
+               zip -r backend-${VERSION}.zip */ -x Jenkins* -x backend-${VERSION}.zip
+               """
+    }
+}
+
                 """
             }
         }
