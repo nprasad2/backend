@@ -38,10 +38,6 @@ pipeline {
           steps {
               sh """
                zip -r backend-${VERSION}.zip */ -x Jenkins* -x backend-${VERSION}.zip
-               """
-    }
-}
-
                 """
             }
         }
